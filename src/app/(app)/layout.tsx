@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { href: "/mermas", label: "Mermas" },
   { href: "/inventario", label: "Inventario" },
   { href: "/movimientos", label: "Movimientos" },
+  { href: "/reportes", label: "Reportes" },
 ];
 
 const CATALOG_LINKS = [

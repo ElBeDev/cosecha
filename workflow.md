@@ -573,39 +573,39 @@ Gráficas sugeridas:
 
 ⸻
 
-18. Reportes básicos — ⬜ NO HECHO (no se construyó en esta demo; sección 25 lo lista como pantalla #20, no incluida)
+18. Reportes básicos — ✅ HECHO Y PROBADO (`/reportes`, tabs diario/semanal/mensual, probado con Playwright: las 3 vistas, descarga de Excel y vista de impresión)
 
-Diario
+Diario — ✅ todos los puntos, incluido "inventario inicial" (derivado en servidor: final − entradas + salidas + mermas del día, no hay snapshot histórico real)
 
-* Entradas.
-* Salidas.
-* Inventario inicial.
-* Inventario final.
-* Mermas.
-* Movimientos por operador.
+* Entradas. ✅
+* Salidas. ✅
+* Inventario inicial. ✅
+* Inventario final. ✅
+* Mermas. ✅
+* Movimientos por operador. ✅
 
-Semanal
+Semanal — ✅ todos los puntos (últimos 7 días)
 
-* Entradas acumuladas.
-* Salidas acumuladas.
-* Productos con mayor movimiento.
-* Diferencias de inventario.
-* Lotes activos.
+* Entradas acumuladas. ✅
+* Salidas acumuladas. ✅
+* Productos con mayor movimiento. ✅ (top 5)
+* Diferencias de inventario. ✅
+* Lotes activos. ✅
 
-Mensual
+Mensual — ✅ todos los puntos (últimos 30 días)
 
-* Movimientos por producto.
-* Inventario promedio.
-* Mermas.
-* Proveedores con mayor volumen.
-* Operadores con mayor actividad.
+* Movimientos por producto. ✅
+* Inventario promedio. 🔶 (promedio de peso disponible por lote activo, no un promedio histórico real en el tiempo — no existe tabla de snapshots)
+* Mermas. ✅
+* Proveedores con mayor volumen. ✅ (top 5)
+* Operadores con mayor actividad. ✅ (top 5)
 
 Formatos:
 
-* Visualización en pantalla.
-* Excel.
-* PDF.
-* Impresión.
+* Visualización en pantalla. ✅
+* Excel. ✅ (`/api/reportes/excel?periodo=...`, con `exceljs`, probado que descarga un `.xlsx` real)
+* PDF. ✅ (vista de impresión → "Guardar como PDF" del navegador, sin librería pesada tipo Puppeteer)
+* Impresión. ✅ (`/reportes/imprimir`, sin nav, con CSS de impresión)
 
 ⸻
 
@@ -782,7 +782,7 @@ El sistema debe bloquear el registro cuando:
 
 ⸻
 
-25. Pantallas necesarias para la demo — 🔶 PARCIAL: 22 de 24 hechas
+25. Pantallas necesarias para la demo — 🔶 PARCIAL: 23 de 24 hechas (solo falta Básculas, ítem 12, excluido a propósito)
 
 1. Inicio de sesión. ✅ `/login`
 2. Dashboard. ✅ `/dashboard`
@@ -803,7 +803,7 @@ El sistema debe bloquear el registro cuando:
 17. Lotes. ✅ (lista dentro de `/inventario`, detalle en ítem 22)
 18. Mermas. ✅ `/mermas` + `/mermas/nueva`
 19. Movimientos. ✅ `/movimientos`
-20. Reportes. ⬜
+20. Reportes. ✅ `/reportes` + `/reportes/imprimir`
 21. Simulador de básculas. ✅ `/basculas/simulador`
 22. Detalle de lote. ✅ `/lotes/[id]`
 23. Bitácora. 🔶 (misma pantalla que Movimientos, ítem 19; sin reversión/cancelación)
