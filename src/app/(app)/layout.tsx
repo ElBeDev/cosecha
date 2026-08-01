@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getSession } from "@/lib/session";
 import { logoutAction } from "@/server/actions/auth";
+import { CatalogNavDropdown } from "@/components/catalog-nav-dropdown";
 
 const NAV_LINKS = [
   { href: "/dashboard", label: "Dashboard" },
@@ -9,6 +10,17 @@ const NAV_LINKS = [
   { href: "/salidas/nueva", label: "Nueva salida" },
   { href: "/inventario", label: "Inventario" },
   { href: "/movimientos", label: "Movimientos" },
+];
+
+const CATALOG_LINKS = [
+  { href: "/productos", label: "Productos" },
+  { href: "/tamanos", label: "Tamaños" },
+  { href: "/calidades", label: "Calidades" },
+  { href: "/proveedores", label: "Proveedores" },
+  { href: "/almacenes", label: "Almacenes y ubicaciones" },
+  { href: "/tarimas", label: "Tarimas" },
+  { href: "/cajas", label: "Cajas" },
+  { href: "/usuarios", label: "Usuarios" },
 ];
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
@@ -23,7 +35,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-3">
           <div className="flex items-center gap-6">
             <span className="text-lg font-bold text-emerald-800 dark:text-emerald-400">+Cosecha</span>
-            <nav className="flex flex-wrap gap-4 text-sm">
+            <nav className="flex flex-wrap items-center gap-4 text-sm">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
@@ -33,12 +45,13 @@ export default async function AppLayout({ children }: { children: React.ReactNod
                   {link.label}
                 </Link>
               ))}
+              <CatalogNavDropdown links={CATALOG_LINKS} />
             </nav>
           </div>
           <div className="flex items-center gap-3 text-sm">
-            <span className="text-zinc-500 dark:text-zinc-400">
+            <Link href="/perfil" className="text-zinc-500 hover:text-emerald-800 dark:text-zinc-400 dark:hover:text-emerald-400">
               {session.name} · {session.role}
-            </span>
+            </Link>
             <form action={logoutAction}>
               <button
                 type="submit"

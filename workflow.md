@@ -19,7 +19,7 @@ Para la demo no es indispensable conectar inicialmente básculas físicas. Se pu
 
 ⸻
 
-FASE 0. ANÁLISIS, CONFIGURACIÓN Y ESTRUCTURA
+FASE 0. ANÁLISIS, CONFIGURACIÓN Y ESTRUCTURA1
 
 2. Datos generales de la empresa — ⬜ NO HECHO (no se construyó pantalla de configuración de empresa en esta demo)
 
@@ -40,9 +40,9 @@ Campos:
 
 ⸻
 
-3. Usuarios y roles — 🔶 PARCIAL (login y roles sembrados en base de datos; permisos granulares por acción NO implementados, solo protección de sesión)
+3. Usuarios y roles — 🔶 PARCIAL (login, roles y CRUD de usuarios en `/usuarios` ya hechos y probados; permisos granulares por acción todavía NO implementados, solo protección de sesión)
 
-Administrador — 🔶 Rol sembrado (admin@cosecha.local), sin pantallas de administración
+Administrador — ✅ CRUD completo en `/usuarios` (crear con password temporal, editar, activar/desactivar), sin permisos granulares por acción todavía
 
 Permisos:
 
@@ -56,7 +56,7 @@ Permisos:
 * Crear usuarios.
 * Revisar bitácoras.
 
-Supervisor — 🔶 Rol sembrado (supervisor@cosecha.local), sin flujo de autorización implementado
+Supervisor — 🔶 Rol gestionable desde `/usuarios`, sin flujo de autorización implementado
 
 Permisos:
 
@@ -84,7 +84,7 @@ No podrá:
 * Cambiar configuraciones.
 * Ajustar inventario sin autorización.
 
-Usuario de consulta — ⬜ Rol sembrado (consulta@cosecha.local), sin pantallas de solo lectura dedicadas
+Usuario de consulta — 🔶 Rol gestionable desde `/usuarios`, sin pantallas de solo lectura dedicadas
 
 Permisos:
 
@@ -94,7 +94,7 @@ Permisos:
 
 ⸻
 
-4. Catálogo de productos — 🔶 PARCIAL (5 productos sembrados por script, sin pantalla CRUD de administración)
+4. Catálogo de productos — ✅ HECHO Y PROBADO (CRUD completo en `/productos`: crear, editar, activar/desactivar)
 
 Cada producto deberá incluir:
 
@@ -127,9 +127,9 @@ Ejemplos:
 
 ⸻
 
-5. Clasificación de producto — 🔶 PARCIAL (tamaño/calidad sembrados y usados en entradas y salidas; catálogos globales, no por-producto; sin pantalla CRUD)
+5. Clasificación de producto — 🔶 PARCIAL (tamaño/calidad ya con CRUD en `/tamanos` y `/calidades`; catálogos globales, no por-producto)
 
-Tamaño — 🔶 Sembrado: Chico/Mediano/Grande, usado en el formulario de entrada
+Tamaño — ✅ CRUD completo en `/tamanos`
 
 * Chico.
 * Mediano.
@@ -145,7 +145,7 @@ Campos:
 * Producto relacionado.
 * Estatus.
 
-Calidad — 🔶 Sembrada: Primera/Segunda/Descarte, usada en el formulario de entrada
+Calidad — ✅ CRUD completo en `/calidades`
 
 * Primera.
 * Segunda.
@@ -170,7 +170,7 @@ Jitomate saladette / Grande / Primera.
 
 ⸻
 
-6. Proveedores y origen — 🔶 PARCIAL (1 proveedor sembrado y usado en entradas, sin pantalla CRUD)
+6. Proveedores y origen — ✅ HECHO Y PROBADO (CRUD completo en `/proveedores`)
 
 Campos:
 
@@ -190,9 +190,9 @@ Campos:
 
 ⸻
 
-7. Catálogo de almacenes y ubicaciones — 🔶 PARCIAL (1 almacén + 1 ubicación sembrados y usados en entradas/salidas, sin pantalla CRUD)
+7. Catálogo de almacenes y ubicaciones — ✅ HECHO Y PROBADO (CRUD de ambos en `/almacenes`, ubicaciones anidadas por almacén)
 
-Almacenes — 🔶 Sembrado: "Bodega principal"
+Almacenes — ✅ CRUD completo en `/almacenes`
 
 * Nombre.
 * Sucursal.
@@ -205,7 +205,7 @@ Almacenes — 🔶 Sembrado: "Bodega principal"
 * Capacidad aproximada.
 * Estatus.
 
-Ubicaciones internas — 🔶 Sembrada: "Pasillo A / Zona 01" (una sola ubicación de ejemplo)
+Ubicaciones internas — ✅ CRUD (crear/editar) anidado dentro de `/almacenes`
 
 * Pasillo.
 * Zona.
@@ -221,9 +221,9 @@ Bodega principal / Pasillo A / Zona 03.
 
 ⸻
 
-8. Catálogo de taras — 🔶 PARCIAL (tarimas y cajas sembradas y usadas en entradas/salidas; empaques adicionales no; sin pantalla CRUD)
+8. Catálogo de taras — 🔶 PARCIAL (tarimas y cajas con CRUD completo; empaques adicionales sigue sin catálogo propio)
 
-Tarimas — ✅ Sembradas y usadas: madera (25kg), plástico (18kg)
+Tarimas — ✅ CRUD completo en `/tarimas`
 
 Campos:
 
@@ -237,7 +237,7 @@ Campos:
 * Código QR.
 * Estatus.
 
-Cajas — ✅ Sembradas y usadas: plástica (2.3kg), cartón (0.8kg), canastilla (1.5kg)
+Cajas — ✅ CRUD completo en `/cajas`
 
 Campos:
 
@@ -782,20 +782,20 @@ El sistema debe bloquear el registro cuando:
 
 ⸻
 
-25. Pantallas necesarias para la demo — 🔶 PARCIAL: 10 de 24 hechas
+25. Pantallas necesarias para la demo — 🔶 PARCIAL: 19 de 24 hechas
 
 1. Inicio de sesión. ✅ `/login`
 2. Dashboard. ✅ `/dashboard`
-3. Usuarios. ⬜
-4. Productos. ⬜
-5. Tamaños. ⬜
-6. Calidades. ⬜
-7. Proveedores. ⬜
-8. Almacenes. ⬜
-9. Ubicaciones. ⬜
-10. Tarimas. ⬜
-11. Cajas. ⬜
-12. Básculas. ⬜ (pantalla de configuración; el simulador sí existe, ítem 21)
+3. Usuarios. ✅ `/usuarios`
+4. Productos. ✅ `/productos`
+5. Tamaños. ✅ `/tamanos`
+6. Calidades. ✅ `/calidades`
+7. Proveedores. ✅ `/proveedores`
+8. Almacenes. ✅ `/almacenes`
+9. Ubicaciones. ✅ (anidada dentro de `/almacenes`)
+10. Tarimas. ✅ `/tarimas`
+11. Cajas. ✅ `/cajas`
+12. Básculas. ⬜ (excluido a propósito: solo son 3 y sus rangos están calibrados para el escenario probado; editarlas desde la UI arriesga romper la demo)
 13. Nueva entrada. ✅ `/entradas/nueva`
 14. Nueva salida. ✅ `/salidas/nueva`
 15. Traslado interno. ⬜
@@ -807,7 +807,7 @@ El sistema debe bloquear el registro cuando:
 21. Simulador de básculas. ✅ `/basculas/simulador`
 22. Detalle de lote. ✅ `/lotes/[id]`
 23. Bitácora. 🔶 (misma pantalla que Movimientos, ítem 19; sin reversión/cancelación)
-24. Perfil de usuario. ⬜
+24. Perfil de usuario. ✅ `/perfil`
 
 ⸻
 
@@ -883,7 +883,7 @@ Usuarios
 
 * Aplicación web responsiva. 🔶 (Tailwind responsivo; no se probó a fondo en dispositivo móvil real, solo en navegador desktop)
 * Compatible con celular, tablet y computadora. 🔶 (mismo caso que el punto anterior)
-* Base de datos centralizada. ✅ (SQLite local; migrar a Postgres es directo por el diseño con Prisma)
+* Base de datos centralizada. ✅ (Postgres en Neon, conectado vía la integración de Vercel — ya no es SQLite local)
 * Control de acceso por roles. 🔶 (roles existen y protegen sesión; permisos granulares por acción no)
 * Registro de auditoría. ✅ (`MovementLog`, ver sección 16)
 * Arquitectura preparada para múltiples sucursales. ⬜
@@ -892,7 +892,7 @@ Usuarios
 * Exportación a Excel y PDF. ⬜
 * Diseño modular. ✅ (Server Actions, validaciones y lógica de dominio separadas por archivo)
 * Respaldos automáticos. ⬜
-* Ambiente de pruebas y ambiente de producción. ⬜ (solo hay un ambiente local de desarrollo)
+* Ambiente de pruebas y ambiente de producción. ✅ HECHO Y DESPLEGADO: local (dev) y Vercel (producción) contra la misma base de Neon por ahora — separarlos en dos bases (p. ej. con un branch de Neon) queda pendiente
 * Preparación para códigos QR. ⬜
 * Preparación para impresora de etiquetas. ⬜
 
@@ -919,7 +919,7 @@ Durante la presentación debe poder ejecutarse este escenario:
 15. Consultar el historial completo. ✅ (los 3 movimientos visibles en `/movimientos`)
 16. Visualizar los cambios en el dashboard. ✅ (KPIs y gráficas reflejando los totales del día)
 
-Para correrla: `npm run dev` en `/Volumes/work/+Cosecha`, entrar a `localhost:3000`, login con `operador1@cosecha.local` / `cosecha2026` (o cualquier otro usuario del seed).
+Para correrla local: `npm run dev` en `/Volumes/work/+Cosecha`, entrar a `localhost:3000`. Ya también está desplegada y viva en: **https://cosecha-olive.vercel.app** — mismo login: `operador1@cosecha.local` / `cosecha2026` (o cualquier otro usuario del seed). Repo: `https://github.com/ElBeDev/cosecha`.
 
 ⸻
 

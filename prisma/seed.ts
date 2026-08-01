@@ -29,22 +29,18 @@ async function main() {
     )
   );
 
-  const warehouse = await prisma.warehouse.upsert({
-    where: { id: 1 },
-    update: {},
-    create: { name: "Bodega principal", type: "BODEGA", capacity: 5000, status: "ACTIVO" },
-  });
+  const warehouse =
+    (await prisma.warehouse.findFirst({ where: { name: "Bodega principal" } })) ??
+    (await prisma.warehouse.create({
+      data: { name: "Bodega principal", type: "BODEGA", capacity: 5000, status: "ACTIVO" },
+    }));
 
-  await prisma.location.upsert({
-    where: { id: 1 },
-    update: {},
-    create: {
-      warehouseId: warehouse.id,
-      label: "Pasillo A / Zona 01",
-      aisle: "A",
-      zone: "01",
-    },
-  });
+  const existingLocation = await prisma.location.findFirst({ where: { label: "Pasillo A / Zona 01" } });
+  if (!existingLocation) {
+    await prisma.location.create({
+      data: { warehouseId: warehouse.id, label: "Pasillo A / Zona 01", aisle: "A", zone: "01" },
+    });
+  }
 
   await prisma.supplier.upsert({
     where: { id: 1 },
@@ -75,17 +71,15 @@ async function main() {
     )
   );
 
-  await Promise.all(
-    ["Chico", "Mediano", "Grande"].map((name, i) =>
-      prisma.size.upsert({ where: { id: i + 1 }, update: {}, create: { id: i + 1, name } })
-    )
-  );
+  for (const name of ["Chico", "Mediano", "Grande"]) {
+    const existing = await prisma.size.findFirst({ where: { name } });
+    if (!existing) await prisma.size.create({ data: { name } });
+  }
 
-  await Promise.all(
-    ["Primera", "Segunda", "Descarte"].map((name, i) =>
-      prisma.quality.upsert({ where: { id: i + 1 }, update: {}, create: { id: i + 1, name } })
-    )
-  );
+  for (const name of ["Primera", "Segunda", "Descarte"]) {
+    const existing = await prisma.quality.findFirst({ where: { name } });
+    if (!existing) await prisma.quality.create({ data: { name } });
+  }
 
   await Promise.all([
     prisma.tarimaType.upsert({
@@ -118,47 +112,17 @@ async function main() {
     }),
   ]);
 
-  await Promise.all([
-    prisma.scale.upsert({
-      where: { id: 1 },
-      update: {},
-      create: {
-        id: 1,
-        name: "Báscula 1 - Plataforma industrial",
-        type: "PLATAFORMA",
-        minCapacity: 200,
-        maxCapacity: 1000,
-        unit: "kg",
-        status: "ACTIVO",
-      },
-    }),
-    prisma.scale.upsert({
-      where: { id: 2 },
-      update: {},
-      create: {
-        id: 2,
-        name: "Báscula 2 - Cajas",
-        type: "CAJAS",
-        minCapacity: 5,
-        maxCapacity: 200,
-        unit: "kg",
-        status: "ACTIVO",
-      },
-    }),
-    prisma.scale.upsert({
-      where: { id: 3 },
-      update: {},
-      create: {
-        id: 3,
-        name: "Báscula 3 - Mostrador",
-        type: "MOSTRADOR",
-        minCapacity: 0.01,
-        maxCapacity: 5,
-        unit: "kg",
-        status: "ACTIVO",
-      },
-    }),
-  ]);
+  const scales = [
+    { name: "Báscula 1 - Plataforma industrial", type: "PLATAFORMA" as const, minCapacity: 200, maxCapacity: 1000 },
+    { name: "Báscula 2 - Cajas", type: "CAJAS" as const, minCapacity: 5, maxCapacity: 200 },
+    { name: "Báscula 3 - Mostrador", type: "MOSTRADOR" as const, minCapacity: 0.01, maxCapacity: 5 },
+  ];
+  for (const scale of scales) {
+    const existing = await prisma.scale.findFirst({ where: { name: scale.name } });
+    if (!existing) {
+      await prisma.scale.create({ data: { ...scale, unit: "kg", status: "ACTIVO" } });
+    }
+  }
 
   console.log("Seed completo.");
   console.log(`Usuarios de demo (todos con password: "${DEMO_PASSWORD}"):`);
