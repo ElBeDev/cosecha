@@ -1,0 +1,321 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum Role {
+  ADMINISTRADOR
+  SUPERVISOR
+  OPERADOR
+  CONSULTA
+}
+
+enum ProductUnit {
+  KG
+  CAJA
+  PIEZA
+  TARIMA
+}
+
+enum Status {
+  ACTIVO
+  INACTIVO
+}
+
+enum PalletType {
+  MADERA
+  PLASTICO
+  METALICA
+}
+
+enum WarehouseType {
+  BODEGA
+  CAMARA_FRIA
+  RECEPCION
+  EMBARQUE
+  MOSTRADOR
+}
+
+enum ScaleType {
+  PLATAFORMA
+  CAJAS
+  MOSTRADOR
+}
+
+enum LotStatus {
+  DISPONIBLE
+  RESERVADO
+  PARCIALMENTE_UTILIZADO
+  AGOTADO
+  BLOQUEADO
+  EN_REVISION
+  MERMA
+  CANCELADO
+}
+
+enum ExitType {
+  VENTA
+  TRASLADO_INTERNO
+  EMBARQUE
+  DEVOLUCION
+  MERMA
+  AJUSTE_AUTORIZADO
+  MUESTRA
+  CONSUMO_INTERNO
+}
+
+enum ExitMode {
+  TARIMA
+  SIN_TARIMA
+  CAJAS
+  MOSTRADOR
+}
+
+enum RecordStatus {
+  REGISTRADA
+  CANCELADA
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         Role
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+
+  entries      Entry[]
+  exits        Exit[]
+  lots         Lot[]
+  movementLogs MovementLog[]
+}
+
+model Product {
+  id        Int         @id @default(autoincrement())
+  code      String      @unique
+  name      String
+  category  String?
+  unit      ProductUnit @default(KG)
+  minWeight Float?
+  maxWeight Float?
+  status    Status      @default(ACTIVO)
+  notes     String?
+
+  lots    Lot[]
+  entries Entry[]
+  exits   Exit[]
+}
+
+model Size {
+  id     Int    @id @default(autoincrement())
+  name   String
+  status Status @default(ACTIVO)
+
+  lots    Lot[]
+  entries Entry[]
+  exits   Exit[]
+}
+
+model Quality {
+  id     Int    @id @default(autoincrement())
+  name   String
+  status Status @default(ACTIVO)
+
+  lots    Lot[]
+  entries Entry[]
+  exits   Exit[]
+}
+
+model Supplier {
+  id      Int     @id @default(autoincrement())
+  name    String
+  contact String?
+  phone   String?
+  email   String?
+  type    String  @default("PRODUCTOR_EXTERNO")
+  status  Status  @default(ACTIVO)
+
+  lots    Lot[]
+  entries Entry[]
+}
+
+model Warehouse {
+  id       Int           @id @default(autoincrement())
+  name     String
+  type     WarehouseType
+  capacity Float?
+  status   Status        @default(ACTIVO)
+
+  locations Location[]
+  lots      Lot[]
+  entries   Entry[]
+}
+
+model Location {
+  id          Int       @id @default(autoincrement())
+  warehouseId Int
+  warehouse   Warehouse @relation(fields: [warehouseId], references: [id])
+  label       String
+  aisle       String?
+  zone        String?
+
+  lots      Lot[]
+  entries   Entry[]
+  exitsFrom Exit[]  @relation("ExitSourceLocation")
+  exitsTo   Exit[]  @relation("ExitDestinationLocation")
+}
+
+model TarimaType {
+  id          Int        @id @default(autoincrement())
+  code        String     @unique
+  type        PalletType
+  tareWeight  Float
+  maxCapacity Float?
+  status      Status     @default(ACTIVO)
+
+  entries Entry[]
+}
+
+model CajaType {
+  id          Int    @id @default(autoincrement())
+  code        String @unique
+  name        String
+  tareWeight  Float
+  maxCapacity Float?
+  status      Status @default(ACTIVO)
+
+  entries Entry[]
+}
+
+model Scale {
+  id          Int       @id @default(autoincrement())
+  name        String
+  type        ScaleType
+  minCapacity Float
+  maxCapacity Float
+  unit        String    @default("kg")
+  status      Status    @default(ACTIVO)
+
+  entries Entry[]
+  exits   Exit[]
+}
+
+model Lot {
+  id              Int       @id @default(autoincrement())
+  code            String    @unique
+  productId       Int
+  product         Product   @relation(fields: [productId], references: [id])
+  sizeId          Int
+  size            Size      @relation(fields: [sizeId], references: [id])
+  qualityId       Int
+  quality         Quality   @relation(fields: [qualityId], references: [id])
+  supplierId      Int
+  supplier        Supplier  @relation(fields: [supplierId], references: [id])
+  origin          String?
+  harvestDate     DateTime?
+  entryDatetime   DateTime  @default(now())
+  initialWeight   Float
+  availableWeight Float
+  warehouseId     Int
+  warehouse       Warehouse @relation(fields: [warehouseId], references: [id])
+  locationId      Int?
+  location        Location? @relation(fields: [locationId], references: [id])
+  status          LotStatus @default(DISPONIBLE)
+  operatorId      Int
+  operator        User      @relation(fields: [operatorId], references: [id])
+  notes           String?
+
+  entry Entry?
+  exits Exit[]
+}
+
+model Entry {
+  id             Int          @id @default(autoincrement())
+  folio          String       @unique
+  datetime       DateTime     @default(now())
+  operatorId     Int
+  operator       User         @relation(fields: [operatorId], references: [id])
+  supplierId     Int
+  supplier       Supplier     @relation(fields: [supplierId], references: [id])
+  productId      Int
+  product        Product      @relation(fields: [productId], references: [id])
+  sizeId         Int
+  size           Size         @relation(fields: [sizeId], references: [id])
+  qualityId      Int
+  quality        Quality      @relation(fields: [qualityId], references: [id])
+  harvestDate    DateTime?
+  scaleId        Int
+  scale          Scale        @relation(fields: [scaleId], references: [id])
+  grossWeight    Float
+  tarimaTypeId   Int?
+  tarimaType     TarimaType?  @relation(fields: [tarimaTypeId], references: [id])
+  palletTare     Float        @default(0)
+  cajaTypeId     Int?
+  cajaType       CajaType?    @relation(fields: [cajaTypeId], references: [id])
+  boxCount       Int          @default(0)
+  boxesTare      Float        @default(0)
+  additionalTare Float        @default(0)
+  netWeight      Float
+  warehouseId    Int
+  warehouse      Warehouse    @relation(fields: [warehouseId], references: [id])
+  locationId     Int?
+  location       Location?    @relation(fields: [locationId], references: [id])
+  notes          String?
+  status         RecordStatus @default(REGISTRADA)
+  lotId          Int          @unique
+  lot            Lot          @relation(fields: [lotId], references: [id])
+}
+
+model Exit {
+  id                    Int          @id @default(autoincrement())
+  folio                 String       @unique
+  datetime              DateTime     @default(now())
+  operatorId            Int
+  operator              User         @relation(fields: [operatorId], references: [id])
+  exitType              ExitType
+  exitMode              ExitMode
+  lotId                 Int
+  lot                   Lot          @relation(fields: [lotId], references: [id])
+  productId             Int
+  product               Product      @relation(fields: [productId], references: [id])
+  sizeId                Int
+  size                  Size         @relation(fields: [sizeId], references: [id])
+  qualityId             Int
+  quality               Quality      @relation(fields: [qualityId], references: [id])
+  scaleId               Int
+  scale                 Scale        @relation(fields: [scaleId], references: [id])
+  grossWeight           Float?
+  tareWeight            Float        @default(0)
+  boxCount              Int?
+  netWeight             Float
+  sourceLocationId      Int?
+  sourceLocation        Location?    @relation("ExitSourceLocation", fields: [sourceLocationId], references: [id])
+  destinationLocationId Int?
+  destinationLocation   Location?    @relation("ExitDestinationLocation", fields: [destinationLocationId], references: [id])
+  customer              String?
+  reason                String?
+  notes                 String?
+  status                RecordStatus @default(REGISTRADA)
+}
+
+model MovementLog {
+  id           Int      @id @default(autoincrement())
+  occurredAt   DateTime @default(now())
+  userId       Int
+  user         User     @relation(fields: [userId], references: [id])
+  action       String
+  module       String
+  folio        String
+  lotId        Int?
+  entryId      Int?
+  exitId       Int?
+  newData      String?
+  device       String   @default("web")
+  reason       String?
+  authorizedBy Int?
+}
