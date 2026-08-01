@@ -80,6 +80,18 @@ enum RecordStatus {
   CANCELADA
 }
 
+enum AdjustmentReason {
+  DESHIDRATACION
+  DANO
+  GOLPE
+  DESCOMPOSICION
+  PRODUCTO_RECHAZADO
+  DERRAME
+  DIFERENCIA_DE_PESO
+  ERROR_DE_CAPTURA
+  OTRO
+}
+
 model User {
   id           Int      @id @default(autoincrement())
   name         String
@@ -89,11 +101,13 @@ model User {
   active       Boolean  @default(true)
   createdAt    DateTime @default(now())
 
-  entries      Entry[]
-  exits        Exit[]
-  lots         Lot[]
-  movementLogs MovementLog[]
-  transfers    Transfer[]
+  entries               Entry[]
+  exits                 Exit[]
+  lots                  Lot[]
+  movementLogs          MovementLog[]
+  transfers             Transfer[]
+  adjustmentsOperated   Adjustment[]  @relation("AdjustmentOperator")
+  adjustmentsSupervised Adjustment[]  @relation("AdjustmentSupervisor")
 }
 
 model Product {
@@ -235,9 +249,10 @@ model Lot {
   operator        User      @relation(fields: [operatorId], references: [id])
   notes           String?
 
-  entry     Entry?
-  exits     Exit[]
-  transfers Transfer[]
+  entry       Entry?
+  exits       Exit[]
+  transfers   Transfer[]
+  adjustments Adjustment[]
 }
 
 model Entry {
@@ -344,4 +359,22 @@ model Transfer {
   toLocation      Location? @relation("TransferToLocation", fields: [toLocationId], references: [id])
   reason          String?
   notes           String?
+}
+
+model Adjustment {
+  id           Int              @id @default(autoincrement())
+  folio        String           @unique
+  datetime     DateTime         @default(now())
+  lotId        Int
+  lot          Lot              @relation(fields: [lotId], references: [id])
+  operatorId   Int
+  operator     User             @relation("AdjustmentOperator", fields: [operatorId], references: [id])
+  supervisorId Int?
+  supervisor   User?            @relation("AdjustmentSupervisor", fields: [supervisorId], references: [id])
+  weightBefore Float
+  weightAfter  Float
+  difference   Float
+  percentage   Float
+  reason       AdjustmentReason
+  notes        String?
 }

@@ -494,7 +494,7 @@ El traslado:
 
 ⸻
 
-15. Ajustes y mermas — ⬜ NO HECHO (no se construyó en esta demo)
+15. Ajustes y mermas — ✅ HECHO Y PROBADO (`/mermas/nueva` + `/mermas`: peso antes se toma del disponible en servidor, calcula diferencia/porcentaje, actualiza el lote y transiciona su estatus; probado 160kg → 145kg, −15kg / 9.4%; motivo de deshidratación registrado manualmente como anticipaba el doc)
 
 Tipos de merma
 
@@ -782,7 +782,7 @@ El sistema debe bloquear el registro cuando:
 
 ⸻
 
-25. Pantallas necesarias para la demo — 🔶 PARCIAL: 20 de 24 hechas
+25. Pantallas necesarias para la demo — 🔶 PARCIAL: 22 de 24 hechas
 
 1. Inicio de sesión. ✅ `/login`
 2. Dashboard. ✅ `/dashboard`
@@ -801,7 +801,7 @@ El sistema debe bloquear el registro cuando:
 15. Traslado interno. ✅ `/traslados/nuevo`
 16. Inventario. ✅ `/inventario`
 17. Lotes. ✅ (lista dentro de `/inventario`, detalle en ítem 22)
-18. Mermas. ⬜
+18. Mermas. ✅ `/mermas` + `/mermas/nueva`
 19. Movimientos. ✅ `/movimientos`
 20. Reportes. ⬜
 21. Simulador de básculas. ✅ `/basculas/simulador`

@@ -5,6 +5,7 @@ const ACTION_LABELS: Record<string, string> = {
   ENTRADA_CREADA: "Entrada registrada",
   SALIDA_CREADA: "Salida registrada",
   TRASLADO_CREADO: "Traslado registrado",
+  MERMA_REGISTRADA: "Merma registrada",
 };
 
 function formatDetail(newData: string | null): string {

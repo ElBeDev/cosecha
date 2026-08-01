@@ -7,6 +7,7 @@ const ACTION_LABELS: Record<string, string> = {
   ENTRADA_CREADA: "Entrada registrada",
   SALIDA_CREADA: "Salida registrada",
   TRASLADO_CREADO: "Traslado registrado",
+  MERMA_REGISTRADA: "Merma registrada",
 };
 
 export default async function DashboardPage() {

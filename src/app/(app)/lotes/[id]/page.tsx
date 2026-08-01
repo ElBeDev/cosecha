@@ -23,6 +23,7 @@ export default async function LoteDetailPage({ params }: { params: Promise<{ id:
         include: { operator: true, fromWarehouse: true, toWarehouse: true, fromLocation: true, toLocation: true },
         orderBy: { datetime: "desc" },
       },
+      adjustments: { include: { operator: true, supervisor: true }, orderBy: { datetime: "desc" } },
     },
   });
 
@@ -149,6 +150,42 @@ export default async function LoteDetailPage({ params }: { params: Promise<{ id:
                       {t.toLocation ? ` · ${t.toLocation.label}` : ""}
                     </td>
                     <td className="px-3 py-2">{t.operator.name}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+
+      <section>
+        <h2 className="mb-2 text-base font-semibold">Mermas y ajustes ({lot.adjustments.length})</h2>
+        {lot.adjustments.length === 0 ? (
+          <p className="text-sm text-zinc-500">Este lote todavía no tiene mermas registradas.</p>
+        ) : (
+          <div className="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
+            <table className="min-w-full divide-y divide-zinc-200 text-sm dark:divide-zinc-800">
+              <thead className="bg-zinc-50 dark:bg-zinc-900">
+                <tr className="text-left text-xs font-semibold uppercase text-zinc-500">
+                  <th className="px-3 py-2">Folio</th>
+                  <th className="px-3 py-2">Fecha</th>
+                  <th className="px-3 py-2">Motivo</th>
+                  <th className="px-3 py-2 text-right">Diferencia</th>
+                  <th className="px-3 py-2">Operador</th>
+                  <th className="px-3 py-2">Supervisor</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
+                {lot.adjustments.map((a) => (
+                  <tr key={a.id}>
+                    <td className="px-3 py-2 font-medium">{a.folio}</td>
+                    <td className="px-3 py-2">{a.datetime.toLocaleString("es-MX")}</td>
+                    <td className="px-3 py-2">{a.reason}</td>
+                    <td className="px-3 py-2 text-right">
+                      −{a.difference.toFixed(2)} kg ({a.percentage.toFixed(1)}%)
+                    </td>
+                    <td className="px-3 py-2">{a.operator.name}</td>
+                    <td className="px-3 py-2">{a.supervisor?.name ?? "-"}</td>
                   </tr>
                 ))}
               </tbody>
