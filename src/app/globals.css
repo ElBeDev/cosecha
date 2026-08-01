@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme {
   --color-latte-50: #faf6ef;
   --color-latte-100: #f4ecdd;
@@ -32,17 +34,15 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #1a140c;
-    --foreground: #faf6ef;
+:root[data-theme="dark"] {
+  --background: #1a140c;
+  --foreground: #faf6ef;
 
-    --chart-series-1: #3987e5;
-    --chart-series-2: #d95926;
-    --chart-grid: #3a2e1e;
-    --chart-axis: #5c4a34;
-    --chart-muted: #b2a08a;
-  }
+  --chart-series-1: #3987e5;
+  --chart-series-2: #d95926;
+  --chart-grid: #3a2e1e;
+  --chart-axis: #5c4a34;
+  --chart-muted: #b2a08a;
 }
 
 body {

@@ -26,7 +26,16 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        <script
+          // Se aplica antes del primer paint para que no haya parpadeo entre temas.
+          dangerouslySetInnerHTML={{
+            __html: `try{if(localStorage.getItem('cosecha-theme')==='dark'){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

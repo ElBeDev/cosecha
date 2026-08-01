@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { getSession } from "@/lib/session";
 import { logoutAction } from "@/server/actions/auth";
 import { CatalogNavDropdown } from "@/components/catalog-nav-dropdown";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const NAV_LINKS = [
   { href: "/dashboard", label: "Dashboard" },
@@ -52,6 +53,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
             </nav>
           </div>
           <div className="flex items-center gap-3 text-sm">
+            <ThemeToggle />
             <Link href="/perfil" className="text-latte-500 hover:text-emerald-800 dark:text-latte-400 dark:hover:text-emerald-400">
               {session.name} · {session.role}
             </Link>
