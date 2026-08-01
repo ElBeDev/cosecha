@@ -472,7 +472,7 @@ El módulo de cobro se incorporará en la siguiente fase comercial.
 
 ⸻
 
-14. Movimientos internos — ⬜ NO HECHO (no se construyó traslado interno en esta demo)
+14. Movimientos internos — ✅ HECHO Y PROBADO (`/traslados/nuevo`: cambia almacén/ubicación del lote sin tocar `availableWeight`, probado que el inventario total no cambia; visible en detalle de lote y en `/movimientos`)
 
 Debe existir una opción de traslado interno para evitar que el sistema descuente mercancía como venta.
 
@@ -782,7 +782,7 @@ El sistema debe bloquear el registro cuando:
 
 ⸻
 
-25. Pantallas necesarias para la demo — 🔶 PARCIAL: 19 de 24 hechas
+25. Pantallas necesarias para la demo — 🔶 PARCIAL: 20 de 24 hechas
 
 1. Inicio de sesión. ✅ `/login`
 2. Dashboard. ✅ `/dashboard`
@@ -798,7 +798,7 @@ El sistema debe bloquear el registro cuando:
 12. Básculas. ⬜ (excluido a propósito: solo son 3 y sus rangos están calibrados para el escenario probado; editarlas desde la UI arriesga romper la demo)
 13. Nueva entrada. ✅ `/entradas/nueva`
 14. Nueva salida. ✅ `/salidas/nueva`
-15. Traslado interno. ⬜
+15. Traslado interno. ✅ `/traslados/nuevo`
 16. Inventario. ✅ `/inventario`
 17. Lotes. ✅ (lista dentro de `/inventario`, detalle en ítem 22)
 18. Mermas. ⬜

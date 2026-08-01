@@ -6,6 +6,7 @@ import { InventarioPorProductoChart, EntradasVsSalidasChart } from "@/components
 const ACTION_LABELS: Record<string, string> = {
   ENTRADA_CREADA: "Entrada registrada",
   SALIDA_CREADA: "Salida registrada",
+  TRASLADO_CREADO: "Traslado registrado",
 };
 
 export default async function DashboardPage() {

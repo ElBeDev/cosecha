@@ -93,6 +93,7 @@ model User {
   exits        Exit[]
   lots         Lot[]
   movementLogs MovementLog[]
+  transfers    Transfer[]
 }
 
 model Product {
@@ -151,9 +152,11 @@ model Warehouse {
   capacity Float?
   status   Status        @default(ACTIVO)
 
-  locations Location[]
-  lots      Lot[]
-  entries   Entry[]
+  locations     Location[]
+  lots          Lot[]
+  entries       Entry[]
+  transfersFrom Transfer[] @relation("TransferFromWarehouse")
+  transfersTo   Transfer[] @relation("TransferToWarehouse")
 }
 
 model Location {
@@ -164,10 +167,12 @@ model Location {
   aisle       String?
   zone        String?
 
-  lots      Lot[]
-  entries   Entry[]
-  exitsFrom Exit[]  @relation("ExitSourceLocation")
-  exitsTo   Exit[]  @relation("ExitDestinationLocation")
+  lots          Lot[]
+  entries       Entry[]
+  exitsFrom     Exit[]     @relation("ExitSourceLocation")
+  exitsTo       Exit[]     @relation("ExitDestinationLocation")
+  transfersFrom Transfer[] @relation("TransferFromLocation")
+  transfersTo   Transfer[] @relation("TransferToLocation")
 }
 
 model TarimaType {
@@ -230,8 +235,9 @@ model Lot {
   operator        User      @relation(fields: [operatorId], references: [id])
   notes           String?
 
-  entry Entry?
-  exits Exit[]
+  entry     Entry?
+  exits     Exit[]
+  transfers Transfer[]
 }
 
 model Entry {
@@ -318,4 +324,24 @@ model MovementLog {
   device       String   @default("web")
   reason       String?
   authorizedBy Int?
+}
+
+model Transfer {
+  id              Int       @id @default(autoincrement())
+  folio           String    @unique
+  datetime        DateTime  @default(now())
+  operatorId      Int
+  operator        User      @relation(fields: [operatorId], references: [id])
+  lotId           Int
+  lot             Lot       @relation(fields: [lotId], references: [id])
+  fromWarehouseId Int
+  fromWarehouse   Warehouse @relation("TransferFromWarehouse", fields: [fromWarehouseId], references: [id])
+  fromLocationId  Int?
+  fromLocation    Location? @relation("TransferFromLocation", fields: [fromLocationId], references: [id])
+  toWarehouseId   Int
+  toWarehouse     Warehouse @relation("TransferToWarehouse", fields: [toWarehouseId], references: [id])
+  toLocationId    Int?
+  toLocation      Location? @relation("TransferToLocation", fields: [toLocationId], references: [id])
+  reason          String?
+  notes           String?
 }

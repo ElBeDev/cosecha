@@ -19,6 +19,10 @@ export default async function LoteDetailPage({ params }: { params: Promise<{ id:
       operator: true,
       entry: { include: { scale: true, tarimaType: true, cajaType: true } },
       exits: { include: { operator: true, scale: true }, orderBy: { datetime: "desc" } },
+      transfers: {
+        include: { operator: true, fromWarehouse: true, toWarehouse: true, fromLocation: true, toLocation: true },
+        orderBy: { datetime: "desc" },
+      },
     },
   });
 
@@ -107,6 +111,44 @@ export default async function LoteDetailPage({ params }: { params: Promise<{ id:
                     <td className="px-3 py-2">{exit.exitMode}</td>
                     <td className="px-3 py-2">{exit.operator.name}</td>
                     <td className="px-3 py-2 text-right">{exit.netWeight.toFixed(2)} kg</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+
+      <section>
+        <h2 className="mb-2 text-base font-semibold">Traslados ({lot.transfers.length})</h2>
+        {lot.transfers.length === 0 ? (
+          <p className="text-sm text-zinc-500">Este lote todavía no tiene traslados registrados.</p>
+        ) : (
+          <div className="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
+            <table className="min-w-full divide-y divide-zinc-200 text-sm dark:divide-zinc-800">
+              <thead className="bg-zinc-50 dark:bg-zinc-900">
+                <tr className="text-left text-xs font-semibold uppercase text-zinc-500">
+                  <th className="px-3 py-2">Folio</th>
+                  <th className="px-3 py-2">Fecha</th>
+                  <th className="px-3 py-2">De</th>
+                  <th className="px-3 py-2">A</th>
+                  <th className="px-3 py-2">Operador</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
+                {lot.transfers.map((t) => (
+                  <tr key={t.id}>
+                    <td className="px-3 py-2 font-medium">{t.folio}</td>
+                    <td className="px-3 py-2">{t.datetime.toLocaleString("es-MX")}</td>
+                    <td className="px-3 py-2">
+                      {t.fromWarehouse.name}
+                      {t.fromLocation ? ` · ${t.fromLocation.label}` : ""}
+                    </td>
+                    <td className="px-3 py-2">
+                      {t.toWarehouse.name}
+                      {t.toLocation ? ` · ${t.toLocation.label}` : ""}
+                    </td>
+                    <td className="px-3 py-2">{t.operator.name}</td>
                   </tr>
                 ))}
               </tbody>

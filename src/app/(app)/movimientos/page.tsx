@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 const ACTION_LABELS: Record<string, string> = {
   ENTRADA_CREADA: "Entrada registrada",
   SALIDA_CREADA: "Salida registrada",
+  TRASLADO_CREADO: "Traslado registrado",
 };
 
 function formatDetail(newData: string | null): string {

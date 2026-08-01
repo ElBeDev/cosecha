@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/entradas/nueva", label: "Nueva entrada" },
   { href: "/salidas/nueva", label: "Nueva salida" },
+  { href: "/traslados/nuevo", label: "Traslados" },
   { href: "/inventario", label: "Inventario" },
   { href: "/movimientos", label: "Movimientos" },
 ];
