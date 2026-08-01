@@ -546,30 +546,30 @@ No debe permitirse borrar movimientos. Se deben cancelar o revertir dejando hist
 
 ⸻
 
-17. Dashboard básico — 🔶 PARCIAL (`/dashboard`, hecho y probado; 5 de 12 indicadores, 2 de 5 gráficas)
+17. Dashboard básico — ✅ HECHO Y PROBADO (`/dashboard`; 11 de 12 indicadores, las 5 gráficas sugeridas)
 
 Indicadores:
 
 * Inventario total en kilogramos. ✅
 * Entradas del día. ✅
 * Salidas del día. ✅
-* Mermas del día. ⬜
+* Mermas del día. ✅
 * Número de lotes activos. ✅
-* Productos con mayor inventario. ⬜
-* Productos con menor inventario. ⬜
+* Productos con mayor inventario. ✅ (lista "Mayor inventario")
+* Productos con menor inventario. ✅ (lista "Menor inventario")
 * Últimos movimientos. ✅
-* Inventario por calidad. ⬜
-* Inventario por tamaño. ⬜
-* Inventario por almacén. ⬜
-* Inventario por antigüedad. ⬜
+* Inventario por calidad. ✅
+* Inventario por tamaño. ✅
+* Inventario por almacén. ✅
+* Inventario por antigüedad. ⬜ (hay "antigüedad promedio" como stat tile, no desglosado por rangos de antigüedad)
 
 Gráficas sugeridas:
 
 * Entradas vs. salidas. ✅
 * Inventario por producto. ✅
-* Inventario por calidad. ⬜
-* Movimientos por día. ⬜
-* Mermas por producto. ⬜
+* Inventario por calidad. ✅
+* Movimientos por día. ✅ (últimos 7 días)
+* Mermas por producto. ✅
 
 ⸻
 
@@ -854,27 +854,27 @@ Usuarios
 
 ⸻
 
-27. Métricas que deberá mostrar la demo — 🔶 PARCIAL: 6 de 20 hechas
+27. Métricas que deberá mostrar la demo — 🔶 PARCIAL: 13 de 20 hechas
 
 * Kilogramos recibidos. 🔶 (visible como "peso inicial" en detalle de lote, no como KPI agregado)
 * Kilogramos disponibles. ✅ (KPI "Inventario total" en dashboard)
 * Kilogramos retirados. 🔶 (visible en detalle de lote, no como KPI agregado)
-* Kilogramos en merma. ⬜
+* Kilogramos en merma. ✅ (KPI "Mermas del día" + gráfica "Mermas por producto")
 * Número de entradas. ✅ (KPI "Entradas del día")
 * Número de salidas. ✅ (KPI "Salidas del día")
 * Número de lotes. ✅ (KPI "Lotes activos")
 * Número de tarimas activas. ⬜
 * Número de cajas registradas. ⬜
 * Inventario por producto. ✅ (gráfica en dashboard)
-* Inventario por tamaño. ⬜
-* Inventario por calidad. ⬜
-* Inventario por ubicación. ⬜
+* Inventario por tamaño. ✅ (gráfica en dashboard)
+* Inventario por calidad. ✅ (gráfica en dashboard)
+* Inventario por ubicación. ⬜ (sí hay "Inventario por almacén")
 * Inventario por proveedor. ⬜
-* Movimientos por operador. ⬜
+* Movimientos por operador. ⬜ (sí hay "Movimientos por día")
 * Diferencias entre peso bruto y neto. 🔶 (visible en detalle de entrada, no como métrica agregada)
-* Porcentaje de merma registrado. ⬜
-* Antigüedad promedio de los lotes. ⬜
-* Productos con inventario bajo. ⬜
+* Porcentaje de merma registrado. ✅ (columna en `/mermas` y en la tarjeta de resultado del formulario)
+* Antigüedad promedio de los lotes. ✅ (stat tile en dashboard)
+* Productos con inventario bajo. ✅ (lista en dashboard, comparado contra `Product.minWeight`)
 * Productos con mayor rotación. ⬜
 
 ⸻
