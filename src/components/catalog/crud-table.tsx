@@ -27,7 +27,7 @@ type CrudTableProps<T extends { id: number }> = {
 };
 
 const inputClass =
-  "rounded-md border border-zinc-300 px-2 py-1.5 text-sm outline-none focus:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-900";
+  "rounded-md border border-latte-300 px-2 py-1.5 text-sm outline-none focus:border-latte-500 dark:border-latte-700 dark:bg-latte-900";
 
 function FieldInput<T>({
   column,
@@ -94,12 +94,12 @@ export function CrudTable<T extends { id: number }>({
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="rounded-lg border border-zinc-200 p-4 dark:border-zinc-800">
-        <h3 className="mb-3 text-sm font-semibold text-zinc-700 dark:text-zinc-200">Nuevo: {title}</h3>
+      <div className="rounded-lg border border-latte-200 p-4 dark:border-latte-800">
+        <h3 className="mb-3 text-sm font-semibold text-latte-700 dark:text-latte-200">Nuevo: {title}</h3>
         <form key={createKey} action={createFormAction} className="flex flex-wrap items-end gap-3">
           {columns.map((col) => (
             <div key={col.key} className="flex flex-col gap-1">
-              <label className="text-xs text-zinc-500">{col.label}</label>
+              <label className="text-xs text-latte-500">{col.label}</label>
               <FieldInput column={col} name={col.key} />
             </div>
           ))}
@@ -118,10 +118,10 @@ export function CrudTable<T extends { id: number }>({
         ) : null}
       </div>
 
-      <div className="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
-        <table className="min-w-full divide-y divide-zinc-200 text-sm dark:divide-zinc-800">
-          <thead className="bg-zinc-50 dark:bg-zinc-900">
-            <tr className="text-left text-xs font-semibold uppercase text-zinc-500">
+      <div className="overflow-x-auto rounded-lg border border-latte-200 dark:border-latte-800">
+        <table className="min-w-full divide-y divide-latte-200 text-sm dark:divide-latte-800">
+          <thead className="bg-latte-50 dark:bg-latte-900">
+            <tr className="text-left text-xs font-semibold uppercase text-latte-500">
               {columns.map((col) => (
                 <th key={col.key} className="px-3 py-2">
                   {col.label}
@@ -131,7 +131,7 @@ export function CrudTable<T extends { id: number }>({
               <th className="px-3 py-2" />
             </tr>
           </thead>
-          <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
+          <tbody className="divide-y divide-latte-100 dark:divide-latte-800">
             {rows.map((row) => {
               const record = row as Record<string, unknown>;
               const isEditing = editingId === row.id;
@@ -147,7 +147,7 @@ export function CrudTable<T extends { id: number }>({
                           ))}
                         {columns.map((col) => (
                           <div key={col.key} className="flex flex-col gap-1">
-                            <label className="text-xs text-zinc-500">{col.label}</label>
+                            <label className="text-xs text-latte-500">{col.label}</label>
                             <FieldInput column={col} name={col.key} defaultValue={record[col.key] as string} />
                           </div>
                         ))}
@@ -161,7 +161,7 @@ export function CrudTable<T extends { id: number }>({
                         <button
                           type="button"
                           onClick={() => setEditingId(null)}
-                          className="rounded-md border border-zinc-300 px-3 py-1.5 text-xs text-zinc-700 dark:border-zinc-700 dark:text-zinc-200"
+                          className="rounded-md border border-latte-300 px-3 py-1.5 text-xs text-latte-700 dark:border-latte-700 dark:text-latte-200"
                         >
                           Cancelar
                         </button>
@@ -186,7 +186,7 @@ export function CrudTable<T extends { id: number }>({
                             className={`rounded-full px-2 py-0.5 text-xs font-medium ${
                               isRowActive(row)
                                 ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-300"
-                                : "bg-zinc-200 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"
+                                : "bg-latte-200 text-latte-600 dark:bg-latte-800 dark:text-latte-400"
                             }`}
                           >
                             {isRowActive(row) ? "Activo" : "Inactivo"}
@@ -198,7 +198,7 @@ export function CrudTable<T extends { id: number }>({
                           <button
                             type="button"
                             onClick={() => setEditingId(row.id)}
-                            className="rounded-md border border-zinc-300 px-2 py-1 text-xs text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-900"
+                            className="rounded-md border border-latte-300 px-2 py-1 text-xs text-latte-700 hover:bg-latte-100 dark:border-latte-700 dark:text-latte-200 dark:hover:bg-latte-900"
                           >
                             Editar
                           </button>
@@ -206,7 +206,7 @@ export function CrudTable<T extends { id: number }>({
                             <button
                               type="button"
                               onClick={() => toggleStatusAction(row.id)}
-                              className="rounded-md border border-zinc-300 px-2 py-1 text-xs text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-900"
+                              className="rounded-md border border-latte-300 px-2 py-1 text-xs text-latte-700 hover:bg-latte-100 dark:border-latte-700 dark:text-latte-200 dark:hover:bg-latte-900"
                             >
                               {isRowActive(row) ? "Desactivar" : "Activar"}
                             </button>
@@ -220,7 +220,7 @@ export function CrudTable<T extends { id: number }>({
             })}
             {rows.length === 0 ? (
               <tr>
-                <td colSpan={columns.length + 2} className="px-3 py-6 text-center text-zinc-500">
+                <td colSpan={columns.length + 2} className="px-3 py-6 text-center text-latte-500">
                   Sin registros todavía.
                 </td>
               </tr>

@@ -16,7 +16,7 @@ export default function SimuladorBasculasPage() {
     <div className="flex flex-col gap-6">
       <div>
         <h1 className="text-xl font-semibold">Simulador de básculas</h1>
-        <p className="mt-1 text-sm text-zinc-500">
+        <p className="mt-1 text-sm text-latte-500">
           Pantalla de aislamiento para probar el componente antes de integrarlo en entradas/salidas.
         </p>
       </div>
@@ -35,7 +35,7 @@ export default function SimuladorBasculasPage() {
       </div>
 
       {lastReading ? (
-        <div className="rounded-md border border-zinc-200 bg-white p-3 text-sm dark:border-zinc-800 dark:bg-zinc-950">
+        <div className="rounded-md border border-latte-200 bg-latte-50 p-3 text-sm dark:border-latte-800 dark:bg-latte-950">
           Última captura ({lastReading.type}): <strong>{lastReading.reading.weight} kg</strong>{" "}
           (estable: {String(lastReading.reading.stable)}, conectada: {String(lastReading.reading.connected)})
         </div>

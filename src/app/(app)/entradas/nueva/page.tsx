@@ -19,7 +19,7 @@ export default async function NuevaEntradaPage() {
     <div className="flex flex-col gap-4">
       <div>
         <h1 className="text-xl font-semibold">Nueva entrada</h1>
-        <p className="mt-1 text-sm text-zinc-500">
+        <p className="mt-1 text-sm text-latte-500">
           Registra la recepción de mercancía, pesa con la báscula de plataforma y genera el lote automáticamente.
         </p>
       </div>

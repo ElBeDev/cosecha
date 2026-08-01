@@ -25,7 +25,7 @@ export default async function MermasPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-semibold">Mermas y ajustes</h1>
-          <p className="mt-1 text-sm text-zinc-500">{adjustments.length} registro(s)</p>
+          <p className="mt-1 text-sm text-latte-500">{adjustments.length} registro(s)</p>
         </div>
         <Link
           href="/mermas/nueva"
@@ -35,10 +35,10 @@ export default async function MermasPage() {
         </Link>
       </div>
 
-      <div className="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
-        <table className="min-w-full divide-y divide-zinc-200 text-sm dark:divide-zinc-800">
-          <thead className="bg-zinc-50 dark:bg-zinc-900">
-            <tr className="text-left text-xs font-semibold uppercase text-zinc-500">
+      <div className="overflow-x-auto rounded-lg border border-latte-200 dark:border-latte-800">
+        <table className="min-w-full divide-y divide-latte-200 text-sm dark:divide-latte-800">
+          <thead className="bg-latte-50 dark:bg-latte-900">
+            <tr className="text-left text-xs font-semibold uppercase text-latte-500">
               <th className="px-3 py-2">Folio</th>
               <th className="px-3 py-2">Fecha</th>
               <th className="px-3 py-2">Lote</th>
@@ -50,7 +50,7 @@ export default async function MermasPage() {
               <th className="px-3 py-2">Supervisor</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
+          <tbody className="divide-y divide-latte-100 dark:divide-latte-800">
             {adjustments.map((a) => (
               <tr key={a.id}>
                 <td className="px-3 py-2 font-medium">{a.folio}</td>
@@ -59,7 +59,7 @@ export default async function MermasPage() {
                   <Link href={`/lotes/${a.lot.id}`} className="text-emerald-700 hover:underline dark:text-emerald-400">
                     {a.lot.code}
                   </Link>
-                  <span className="text-zinc-500"> · {a.lot.product.name}</span>
+                  <span className="text-latte-500"> · {a.lot.product.name}</span>
                 </td>
                 <td className="px-3 py-2">{REASON_LABELS[a.reason] ?? a.reason}</td>
                 <td className="px-3 py-2 text-right">{a.weightBefore.toFixed(2)} kg</td>
@@ -73,7 +73,7 @@ export default async function MermasPage() {
             ))}
             {adjustments.length === 0 ? (
               <tr>
-                <td colSpan={9} className="px-3 py-6 text-center text-zinc-500">
+                <td colSpan={9} className="px-3 py-6 text-center text-latte-500">
                   Sin mermas registradas todavía.
                 </td>
               </tr>

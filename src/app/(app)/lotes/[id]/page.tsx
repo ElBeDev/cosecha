@@ -34,7 +34,7 @@ export default async function LoteDetailPage({ params }: { params: Promise<{ id:
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-semibold">Lote {lot.code}</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <p className="mt-1 text-sm text-latte-500">
             {lot.product.name} · {lot.size.name} / {lot.quality.name}
           </p>
         </div>
@@ -43,7 +43,7 @@ export default async function LoteDetailPage({ params }: { params: Promise<{ id:
         </Link>
       </div>
 
-      <section className="grid grid-cols-2 gap-x-6 gap-y-2 rounded-lg border border-zinc-200 p-4 text-sm dark:border-zinc-800 sm:grid-cols-3">
+      <section className="grid grid-cols-2 gap-x-6 gap-y-2 rounded-lg border border-latte-200 p-4 text-sm dark:border-latte-800 sm:grid-cols-3">
         <Info label="Estatus" value={lot.status} />
         <Info label="Proveedor" value={lot.supplier.name} />
         <Info label="Origen" value={lot.origin ?? "-"} />
@@ -63,9 +63,9 @@ export default async function LoteDetailPage({ params }: { params: Promise<{ id:
       {lot.entry ? (
         <section>
           <h2 className="mb-2 text-base font-semibold">Entrada de origen</h2>
-          <div className="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
-            <table className="min-w-full divide-y divide-zinc-200 text-sm dark:divide-zinc-800">
-              <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
+          <div className="overflow-x-auto rounded-lg border border-latte-200 dark:border-latte-800">
+            <table className="min-w-full divide-y divide-latte-200 text-sm dark:divide-latte-800">
+              <tbody className="divide-y divide-latte-100 dark:divide-latte-800">
                 <Row label="Folio" value={lot.entry.folio} />
                 <Row label="Báscula" value={lot.entry.scale.name} />
                 <Row label="Peso bruto" value={`${lot.entry.grossWeight.toFixed(2)} kg`} />
@@ -89,12 +89,12 @@ export default async function LoteDetailPage({ params }: { params: Promise<{ id:
       <section>
         <h2 className="mb-2 text-base font-semibold">Salidas ({lot.exits.length})</h2>
         {lot.exits.length === 0 ? (
-          <p className="text-sm text-zinc-500">Este lote todavía no tiene salidas registradas.</p>
+          <p className="text-sm text-latte-500">Este lote todavía no tiene salidas registradas.</p>
         ) : (
-          <div className="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
-            <table className="min-w-full divide-y divide-zinc-200 text-sm dark:divide-zinc-800">
-              <thead className="bg-zinc-50 dark:bg-zinc-900">
-                <tr className="text-left text-xs font-semibold uppercase text-zinc-500">
+          <div className="overflow-x-auto rounded-lg border border-latte-200 dark:border-latte-800">
+            <table className="min-w-full divide-y divide-latte-200 text-sm dark:divide-latte-800">
+              <thead className="bg-latte-50 dark:bg-latte-900">
+                <tr className="text-left text-xs font-semibold uppercase text-latte-500">
                   <th className="px-3 py-2">Folio</th>
                   <th className="px-3 py-2">Fecha</th>
                   <th className="px-3 py-2">Tipo</th>
@@ -103,7 +103,7 @@ export default async function LoteDetailPage({ params }: { params: Promise<{ id:
                   <th className="px-3 py-2 text-right">Peso neto</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
+              <tbody className="divide-y divide-latte-100 dark:divide-latte-800">
                 {lot.exits.map((exit) => (
                   <tr key={exit.id}>
                     <td className="px-3 py-2 font-medium">{exit.folio}</td>
@@ -123,12 +123,12 @@ export default async function LoteDetailPage({ params }: { params: Promise<{ id:
       <section>
         <h2 className="mb-2 text-base font-semibold">Traslados ({lot.transfers.length})</h2>
         {lot.transfers.length === 0 ? (
-          <p className="text-sm text-zinc-500">Este lote todavía no tiene traslados registrados.</p>
+          <p className="text-sm text-latte-500">Este lote todavía no tiene traslados registrados.</p>
         ) : (
-          <div className="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
-            <table className="min-w-full divide-y divide-zinc-200 text-sm dark:divide-zinc-800">
-              <thead className="bg-zinc-50 dark:bg-zinc-900">
-                <tr className="text-left text-xs font-semibold uppercase text-zinc-500">
+          <div className="overflow-x-auto rounded-lg border border-latte-200 dark:border-latte-800">
+            <table className="min-w-full divide-y divide-latte-200 text-sm dark:divide-latte-800">
+              <thead className="bg-latte-50 dark:bg-latte-900">
+                <tr className="text-left text-xs font-semibold uppercase text-latte-500">
                   <th className="px-3 py-2">Folio</th>
                   <th className="px-3 py-2">Fecha</th>
                   <th className="px-3 py-2">De</th>
@@ -136,7 +136,7 @@ export default async function LoteDetailPage({ params }: { params: Promise<{ id:
                   <th className="px-3 py-2">Operador</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
+              <tbody className="divide-y divide-latte-100 dark:divide-latte-800">
                 {lot.transfers.map((t) => (
                   <tr key={t.id}>
                     <td className="px-3 py-2 font-medium">{t.folio}</td>
@@ -161,12 +161,12 @@ export default async function LoteDetailPage({ params }: { params: Promise<{ id:
       <section>
         <h2 className="mb-2 text-base font-semibold">Mermas y ajustes ({lot.adjustments.length})</h2>
         {lot.adjustments.length === 0 ? (
-          <p className="text-sm text-zinc-500">Este lote todavía no tiene mermas registradas.</p>
+          <p className="text-sm text-latte-500">Este lote todavía no tiene mermas registradas.</p>
         ) : (
-          <div className="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
-            <table className="min-w-full divide-y divide-zinc-200 text-sm dark:divide-zinc-800">
-              <thead className="bg-zinc-50 dark:bg-zinc-900">
-                <tr className="text-left text-xs font-semibold uppercase text-zinc-500">
+          <div className="overflow-x-auto rounded-lg border border-latte-200 dark:border-latte-800">
+            <table className="min-w-full divide-y divide-latte-200 text-sm dark:divide-latte-800">
+              <thead className="bg-latte-50 dark:bg-latte-900">
+                <tr className="text-left text-xs font-semibold uppercase text-latte-500">
                   <th className="px-3 py-2">Folio</th>
                   <th className="px-3 py-2">Fecha</th>
                   <th className="px-3 py-2">Motivo</th>
@@ -175,7 +175,7 @@ export default async function LoteDetailPage({ params }: { params: Promise<{ id:
                   <th className="px-3 py-2">Supervisor</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
+              <tbody className="divide-y divide-latte-100 dark:divide-latte-800">
                 {lot.adjustments.map((a) => (
                   <tr key={a.id}>
                     <td className="px-3 py-2 font-medium">{a.folio}</td>
@@ -200,7 +200,7 @@ export default async function LoteDetailPage({ params }: { params: Promise<{ id:
 function Info({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col">
-      <span className="text-xs text-zinc-500">{label}</span>
+      <span className="text-xs text-latte-500">{label}</span>
       <span className="font-medium">{value}</span>
     </div>
   );
@@ -209,7 +209,7 @@ function Info({ label, value }: { label: string; value: string }) {
 function Row({ label, value }: { label: string; value: string }) {
   return (
     <tr>
-      <td className="w-48 px-3 py-2 text-zinc-500">{label}</td>
+      <td className="w-48 px-3 py-2 text-latte-500">{label}</td>
       <td className="px-3 py-2 font-medium">{value}</td>
     </tr>
   );

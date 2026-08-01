@@ -25,7 +25,7 @@ const REASON_LABELS: Record<string, string> = {
 
 const initialState: MermaState = null;
 const selectClass =
-  "rounded-md border border-zinc-300 px-3 py-2 text-sm outline-none focus:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-900";
+  "rounded-md border border-latte-300 px-3 py-2 text-sm outline-none focus:border-latte-500 dark:border-latte-700 dark:bg-latte-900";
 
 export function MermaForm({ lots, supervisors }: MermaFormProps) {
   const [state, formAction, pending] = useActionState<MermaState, FormData>(createMermaAction, initialState);
@@ -50,11 +50,11 @@ export function MermaForm({ lots, supervisors }: MermaFormProps) {
       <div className="flex flex-col gap-3 rounded-lg border border-amber-300 bg-amber-50 p-5 dark:border-amber-800 dark:bg-amber-950">
         <h2 className="text-lg font-semibold text-amber-800 dark:text-amber-300">Merma registrada</h2>
         <dl className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
-          <dt className="text-zinc-500">Folio</dt>
+          <dt className="text-latte-500">Folio</dt>
           <dd className="font-medium">{state.folio}</dd>
-          <dt className="text-zinc-500">Lote</dt>
+          <dt className="text-latte-500">Lote</dt>
           <dd className="font-medium">{state.lotCode}</dd>
-          <dt className="text-zinc-500">Diferencia</dt>
+          <dt className="text-latte-500">Diferencia</dt>
           <dd className="font-medium">{state.difference.toFixed(2)} kg ({state.percentage.toFixed(1)}%)</dd>
         </dl>
         <div className="flex gap-3">
@@ -67,7 +67,7 @@ export function MermaForm({ lots, supervisors }: MermaFormProps) {
           </button>
           <a
             href={`/lotes/${state.lotId}`}
-            className="rounded-md border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-900"
+            className="rounded-md border border-latte-300 px-4 py-2 text-sm font-medium text-latte-700 hover:bg-latte-100 dark:border-latte-700 dark:text-latte-200 dark:hover:bg-latte-900"
           >
             Ver lote
           </a>
@@ -79,7 +79,7 @@ export function MermaForm({ lots, supervisors }: MermaFormProps) {
   return (
     <form key={formKey} action={formAction} className="flex max-w-xl flex-col gap-4">
       <div className="flex flex-col gap-1">
-        <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Lote</label>
+        <label className="text-sm font-medium text-latte-700 dark:text-latte-300">Lote</label>
         <select
           name="lotId"
           required
@@ -99,11 +99,11 @@ export function MermaForm({ lots, supervisors }: MermaFormProps) {
       </div>
 
       {selectedLot ? (
-        <p className="text-sm text-zinc-500">Peso disponible actual: {selectedLot.availableWeight.toFixed(2)} kg</p>
+        <p className="text-sm text-latte-500">Peso disponible actual: {selectedLot.availableWeight.toFixed(2)} kg</p>
       ) : null}
 
       <div className="flex flex-col gap-1">
-        <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Peso nuevo (kg)</label>
+        <label className="text-sm font-medium text-latte-700 dark:text-latte-300">Peso nuevo (kg)</label>
         <input
           type="number"
           name="weightAfter"
@@ -117,13 +117,13 @@ export function MermaForm({ lots, supervisors }: MermaFormProps) {
       </div>
 
       {difference !== null && percentage !== null ? (
-        <p className="text-sm text-zinc-500">
+        <p className="text-sm text-latte-500">
           Diferencia: <strong>{difference.toFixed(2)} kg</strong> ({percentage.toFixed(1)}%)
         </p>
       ) : null}
 
       <div className="flex flex-col gap-1">
-        <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Motivo</label>
+        <label className="text-sm font-medium text-latte-700 dark:text-latte-300">Motivo</label>
         <select name="reason" required defaultValue="" className={selectClass}>
           <option value="" disabled>
             Selecciona...
@@ -137,7 +137,7 @@ export function MermaForm({ lots, supervisors }: MermaFormProps) {
       </div>
 
       <div className="flex flex-col gap-1">
-        <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Supervisor autorizador</label>
+        <label className="text-sm font-medium text-latte-700 dark:text-latte-300">Supervisor autorizador</label>
         <select name="supervisorId" defaultValue="" className={selectClass}>
           <option value="">Sin especificar</option>
           {supervisors.map((s) => (
@@ -149,7 +149,7 @@ export function MermaForm({ lots, supervisors }: MermaFormProps) {
       </div>
 
       <div className="flex flex-col gap-1">
-        <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Observaciones</label>
+        <label className="text-sm font-medium text-latte-700 dark:text-latte-300">Observaciones</label>
         <textarea name="notes" rows={2} className={selectClass} />
       </div>
 

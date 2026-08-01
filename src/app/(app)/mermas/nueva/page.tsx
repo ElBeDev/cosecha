@@ -18,7 +18,7 @@ export default async function NuevaMermaPage() {
     <div className="flex flex-col gap-4">
       <div>
         <h1 className="text-xl font-semibold">Nueva merma / ajuste</h1>
-        <p className="mt-1 text-sm text-zinc-500">
+        <p className="mt-1 text-sm text-latte-500">
           Registra deshidratación, daño u otra pérdida de peso en un lote. El peso disponible se actualiza al instante.
         </p>
       </div>

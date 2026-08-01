@@ -155,14 +155,14 @@ export default async function DashboardPage() {
             Ver todos
           </Link>
         </div>
-        <div className="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
-          <table className="min-w-full divide-y divide-zinc-200 text-sm dark:divide-zinc-800">
-            <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
+        <div className="overflow-x-auto rounded-lg border border-latte-200 dark:border-latte-800">
+          <table className="min-w-full divide-y divide-latte-200 text-sm dark:divide-latte-800">
+            <tbody className="divide-y divide-latte-100 dark:divide-latte-800">
               {movimientos.map((m) => {
                 const lot = m.lotId ? lotById.get(m.lotId) : undefined;
                 return (
                   <tr key={m.id}>
-                    <td className="px-3 py-2 whitespace-nowrap text-zinc-500">{m.occurredAt.toLocaleString("es-MX")}</td>
+                    <td className="px-3 py-2 whitespace-nowrap text-latte-500">{m.occurredAt.toLocaleString("es-MX")}</td>
                     <td className="px-3 py-2">{m.user.name}</td>
                     <td className="px-3 py-2">{ACTION_LABELS[m.action] ?? m.action}</td>
                     <td className="px-3 py-2">{m.folio}</td>
@@ -180,7 +180,7 @@ export default async function DashboardPage() {
               })}
               {movimientos.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-3 py-6 text-center text-zinc-500">
+                  <td colSpan={5} className="px-3 py-6 text-center text-latte-500">
                     Sin movimientos todavía.
                   </td>
                 </tr>
@@ -195,20 +195,20 @@ export default async function DashboardPage() {
 
 function StatTile({ label, value, sub }: { label: string; value: string; sub?: string }) {
   return (
-    <div className="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950">
-      <p className="text-xs text-zinc-500">{label}</p>
+    <div className="rounded-lg border border-latte-200 bg-latte-50 p-4 dark:border-latte-800 dark:bg-latte-950">
+      <p className="text-xs text-latte-500">{label}</p>
       <p className="mt-1 text-2xl font-semibold" style={{ fontVariantNumeric: "proportional-nums" }}>
         {value}
       </p>
-      {sub ? <p className="text-xs text-zinc-500">{sub}</p> : null}
+      {sub ? <p className="text-xs text-latte-500">{sub}</p> : null}
     </div>
   );
 }
 
 function ChartCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950">
-      <h3 className="mb-2 text-sm font-semibold text-zinc-700 dark:text-zinc-200">{title}</h3>
+    <div className="rounded-lg border border-latte-200 bg-latte-50 p-4 dark:border-latte-800 dark:bg-latte-950">
+      <h3 className="mb-2 text-sm font-semibold text-latte-700 dark:text-latte-200">{title}</h3>
       {children}
     </div>
   );
@@ -216,9 +216,9 @@ function ChartCard({ title, children }: { title: string; children: React.ReactNo
 
 function ListCard({ title, items }: { title: string; items: string[] }) {
   return (
-    <div className="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950">
-      <h3 className="mb-2 text-sm font-semibold text-zinc-700 dark:text-zinc-200">{title}</h3>
-      <ul className="flex flex-col gap-1 text-sm text-zinc-600 dark:text-zinc-300">
+    <div className="rounded-lg border border-latte-200 bg-latte-50 p-4 dark:border-latte-800 dark:bg-latte-950">
+      <h3 className="mb-2 text-sm font-semibold text-latte-700 dark:text-latte-200">{title}</h3>
+      <ul className="flex flex-col gap-1 text-sm text-latte-600 dark:text-latte-300">
         {items.map((item, i) => (
           <li key={i}>{item}</li>
         ))}

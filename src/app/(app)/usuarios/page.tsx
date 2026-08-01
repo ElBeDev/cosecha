@@ -27,7 +27,7 @@ export default async function UsuariosPage() {
     <div className="flex flex-col gap-4">
       <div>
         <h1 className="text-xl font-semibold">Usuarios</h1>
-        <p className="mt-1 text-sm text-zinc-500">
+        <p className="mt-1 text-sm text-latte-500">
           Los usuarios nuevos se crean con la contraseña temporal <code>cosecha2026</code>.
         </p>
       </div>

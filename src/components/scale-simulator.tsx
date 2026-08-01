@@ -113,9 +113,9 @@ export function ScaleSimulator({
   const canCapture = !disabled && connected && stability === "ESTABLE" && !captured && weightInput !== "";
 
   return (
-    <div className="flex flex-col gap-3 rounded-lg border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900">
+    <div className="flex flex-col gap-3 rounded-lg border border-latte-200 bg-latte-50 p-4 dark:border-latte-800 dark:bg-latte-900">
       <div className="flex items-center justify-between">
-        <span className="text-sm font-semibold text-zinc-800 dark:text-zinc-100">
+        <span className="text-sm font-semibold text-latte-800 dark:text-latte-100">
           Báscula — {SCALE_LABELS[scaleType]}
         </span>
         <button
@@ -132,13 +132,13 @@ export function ScaleSimulator({
         </button>
       </div>
 
-      <p className="text-xs text-zinc-500 dark:text-zinc-400">
+      <p className="text-xs text-latte-500 dark:text-latte-400">
         Rango: {minCapacity} – {maxCapacity} {unit}
       </p>
 
       <div className="flex items-end gap-2">
         <div className="flex flex-col gap-1">
-          <label className="text-xs text-zinc-600 dark:text-zinc-400">Peso ({unit})</label>
+          <label className="text-xs text-latte-600 dark:text-latte-400">Peso ({unit})</label>
           <input
             type="number"
             step="0.01"
@@ -146,7 +146,7 @@ export function ScaleSimulator({
             onChange={(e) => handleWeightChange(e.target.value)}
             disabled={disabled || !connected || captured}
             placeholder="0.00"
-            className="w-32 rounded-md border border-zinc-300 px-2 py-1 text-sm outline-none focus:border-zinc-500 disabled:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-950 dark:disabled:bg-zinc-800"
+            className="w-32 rounded-md border border-latte-300 px-2 py-1 text-sm outline-none focus:border-latte-500 disabled:bg-latte-100 dark:border-latte-700 dark:bg-latte-950 dark:disabled:bg-latte-800"
           />
         </div>
 
@@ -168,7 +168,7 @@ export function ScaleSimulator({
           type="button"
           onClick={handleSimulate}
           disabled={disabled || !connected || captured}
-          className="rounded-md border border-zinc-300 px-3 py-1.5 text-xs font-medium text-zinc-700 hover:bg-zinc-100 disabled:opacity-50 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+          className="rounded-md border border-latte-300 px-3 py-1.5 text-xs font-medium text-latte-700 hover:bg-latte-100 disabled:opacity-50 dark:border-latte-700 dark:text-latte-200 dark:hover:bg-latte-800"
         >
           Simular lectura
         </button>
@@ -176,7 +176,7 @@ export function ScaleSimulator({
           type="button"
           onClick={handleTara}
           disabled={disabled || !connected || captured}
-          className="rounded-md border border-zinc-300 px-3 py-1.5 text-xs font-medium text-zinc-700 hover:bg-zinc-100 disabled:opacity-50 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+          className="rounded-md border border-latte-300 px-3 py-1.5 text-xs font-medium text-latte-700 hover:bg-latte-100 disabled:opacity-50 dark:border-latte-700 dark:text-latte-200 dark:hover:bg-latte-800"
         >
           Tara
         </button>
@@ -192,7 +192,7 @@ export function ScaleSimulator({
           type="button"
           onClick={handleReset}
           disabled={disabled}
-          className="rounded-md border border-zinc-300 px-3 py-1.5 text-xs font-medium text-zinc-700 hover:bg-zinc-100 disabled:opacity-50 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+          className="rounded-md border border-latte-300 px-3 py-1.5 text-xs font-medium text-latte-700 hover:bg-latte-100 disabled:opacity-50 dark:border-latte-700 dark:text-latte-200 dark:hover:bg-latte-800"
         >
           Reiniciar
         </button>

@@ -16,7 +16,7 @@ export default async function NuevoTrasladoPage() {
     <div className="flex flex-col gap-4">
       <div>
         <h1 className="text-xl font-semibold">Nuevo traslado interno</h1>
-        <p className="mt-1 text-sm text-zinc-500">
+        <p className="mt-1 text-sm text-latte-500">
           Cambia la ubicación de un lote sin descontarlo del inventario, para que el sistema no lo confunda con una venta.
         </p>
       </div>

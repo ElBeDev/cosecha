@@ -17,7 +17,7 @@ export default async function NuevaSalidaPage() {
     <div className="flex flex-col gap-4">
       <div>
         <h1 className="text-xl font-semibold">Nueva salida</h1>
-        <p className="mt-1 text-sm text-zinc-500">
+        <p className="mt-1 text-sm text-latte-500">
           Registra una salida por cajas o de mostrador, pesando con la báscula correspondiente.
         </p>
       </div>

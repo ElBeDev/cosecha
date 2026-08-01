@@ -20,19 +20,19 @@ export default async function ReportesPage({
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-semibold">Reportes</h1>
-          <p className="mt-1 text-sm text-zinc-500">Diario, semanal y mensual, con exportación a Excel e impresión.</p>
+          <p className="mt-1 text-sm text-latte-500">Diario, semanal y mensual, con exportación a Excel e impresión.</p>
         </div>
         <div className="flex gap-2">
           <a
             href={`/api/reportes/excel?periodo=${periodo}`}
-            className="rounded-md border border-zinc-300 px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-900"
+            className="rounded-md border border-latte-300 px-3 py-2 text-sm font-medium text-latte-700 hover:bg-latte-100 dark:border-latte-700 dark:text-latte-200 dark:hover:bg-latte-900"
           >
             Descargar Excel
           </a>
           <Link
             href={`/reportes/imprimir?periodo=${periodo}`}
             target="_blank"
-            className="rounded-md border border-zinc-300 px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-900"
+            className="rounded-md border border-latte-300 px-3 py-2 text-sm font-medium text-latte-700 hover:bg-latte-100 dark:border-latte-700 dark:text-latte-200 dark:hover:bg-latte-900"
           >
             Imprimir / PDF
           </Link>
@@ -47,7 +47,7 @@ export default async function ReportesPage({
             className={`rounded-md px-4 py-2 text-sm font-medium ${
               periodo === p.value
                 ? "bg-emerald-700 text-white"
-                : "border border-zinc-300 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-900"
+                : "border border-latte-300 text-latte-700 hover:bg-latte-100 dark:border-latte-700 dark:text-latte-200 dark:hover:bg-latte-900"
             }`}
           >
             {p.label}
@@ -66,7 +66,7 @@ async function ReporteDiarioView() {
   const r = await getReporteDiario();
   return (
     <div className="flex flex-col gap-4">
-      <p className="text-sm text-zinc-500">Fecha: {r.fecha.toLocaleDateString("es-MX")}</p>
+      <p className="text-sm text-latte-500">Fecha: {r.fecha.toLocaleDateString("es-MX")}</p>
       <KeyValueTable
         rows={[
           ["Entradas", `${r.entradas.count} (${r.entradas.kg.toFixed(2)} kg)`],
@@ -89,7 +89,7 @@ async function ReporteSemanalView() {
   const r = await getReporteSemanal();
   return (
     <div className="flex flex-col gap-4">
-      <p className="text-sm text-zinc-500">Desde: {r.desde.toLocaleDateString("es-MX")}</p>
+      <p className="text-sm text-latte-500">Desde: {r.desde.toLocaleDateString("es-MX")}</p>
       <KeyValueTable
         rows={[
           ["Entradas acumuladas", `${r.entradasAcumuladas.count} (${r.entradasAcumuladas.kg.toFixed(2)} kg)`],
@@ -111,7 +111,7 @@ async function ReporteMensualView() {
   const r = await getReporteMensual();
   return (
     <div className="flex flex-col gap-4">
-      <p className="text-sm text-zinc-500">Desde: {r.desde.toLocaleDateString("es-MX")}</p>
+      <p className="text-sm text-latte-500">Desde: {r.desde.toLocaleDateString("es-MX")}</p>
       <KeyValueTable
         rows={[
           ["Inventario promedio por lote", `${r.inventarioPromedioPorLote.toFixed(2)} kg`],
@@ -139,12 +139,12 @@ async function ReporteMensualView() {
 
 function KeyValueTable({ rows }: { rows: [string, string][] }) {
   return (
-    <div className="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
-      <table className="min-w-full divide-y divide-zinc-200 text-sm dark:divide-zinc-800">
-        <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
+    <div className="overflow-x-auto rounded-lg border border-latte-200 dark:border-latte-800">
+      <table className="min-w-full divide-y divide-latte-200 text-sm dark:divide-latte-800">
+        <tbody className="divide-y divide-latte-100 dark:divide-latte-800">
           {rows.map(([label, value]) => (
             <tr key={label}>
-              <td className="w-64 px-3 py-2 text-zinc-500">{label}</td>
+              <td className="w-64 px-3 py-2 text-latte-500">{label}</td>
               <td className="px-3 py-2 font-medium">{value}</td>
             </tr>
           ))}
@@ -158,10 +158,10 @@ function SimpleTable({ title, headers, rows }: { title: string; headers: string[
   return (
     <div>
       <h2 className="mb-2 text-base font-semibold">{title}</h2>
-      <div className="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
-        <table className="min-w-full divide-y divide-zinc-200 text-sm dark:divide-zinc-800">
-          <thead className="bg-zinc-50 dark:bg-zinc-900">
-            <tr className="text-left text-xs font-semibold uppercase text-zinc-500">
+      <div className="overflow-x-auto rounded-lg border border-latte-200 dark:border-latte-800">
+        <table className="min-w-full divide-y divide-latte-200 text-sm dark:divide-latte-800">
+          <thead className="bg-latte-50 dark:bg-latte-900">
+            <tr className="text-left text-xs font-semibold uppercase text-latte-500">
               {headers.map((h) => (
                 <th key={h} className="px-3 py-2">
                   {h}
@@ -169,7 +169,7 @@ function SimpleTable({ title, headers, rows }: { title: string; headers: string[
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
+          <tbody className="divide-y divide-latte-100 dark:divide-latte-800">
             {rows.map((row, i) => (
               <tr key={i}>
                 {row.map((cell, j) => (
@@ -181,7 +181,7 @@ function SimpleTable({ title, headers, rows }: { title: string; headers: string[
             ))}
             {rows.length === 0 ? (
               <tr>
-                <td colSpan={headers.length} className="px-3 py-4 text-center text-zinc-500">
+                <td colSpan={headers.length} className="px-3 py-4 text-center text-latte-500">
                   Sin datos en este periodo.
                 </td>
               </tr>

@@ -19,12 +19,12 @@ export default async function ImprimirReportePage({
   return (
     <div className="mx-auto max-w-3xl px-6 py-8 text-black">
       <div className="mb-6 flex items-center justify-between print:hidden">
-        <span className="text-sm text-zinc-500">Vista de impresión</span>
+        <span className="text-sm text-latte-500">Vista de impresión</span>
         <PrintButton />
       </div>
 
       <h1 className="text-2xl font-bold">+Cosecha — Reporte {PERIODO_LABELS[periodo] ?? periodo}</h1>
-      <p className="mt-1 text-sm text-zinc-600">Generado: {new Date().toLocaleString("es-MX")}</p>
+      <p className="mt-1 text-sm text-latte-600">Generado: {new Date().toLocaleString("es-MX")}</p>
 
       <div className="mt-6">
         {periodo === "diario" ? <Diario /> : null}
@@ -100,8 +100,8 @@ function Table({ rows }: { rows: [string, string][] }) {
     <table className="w-full border-collapse text-sm">
       <tbody>
         {rows.map(([label, value]) => (
-          <tr key={label} className="border-b border-zinc-300">
-            <td className="py-1.5 pr-4 text-zinc-600">{label}</td>
+          <tr key={label} className="border-b border-latte-300">
+            <td className="py-1.5 pr-4 text-latte-600">{label}</td>
             <td className="py-1.5 font-medium">{value}</td>
           </tr>
         ))}
@@ -111,7 +111,7 @@ function Table({ rows }: { rows: [string, string][] }) {
 }
 
 function List({ items }: { items: string[] }) {
-  if (items.length === 0) return <p className="text-sm text-zinc-500">Sin datos en este periodo.</p>;
+  if (items.length === 0) return <p className="text-sm text-latte-500">Sin datos en este periodo.</p>;
   return (
     <ul className="list-disc pl-5 text-sm">
       {items.map((item, i) => (

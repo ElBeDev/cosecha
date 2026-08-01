@@ -17,7 +17,7 @@ export function LoginForm() {
   return (
     <form action={formAction} className="flex w-full max-w-sm flex-col gap-4">
       <div className="flex flex-col gap-1">
-        <label htmlFor="email" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+        <label htmlFor="email" className="text-sm font-medium text-latte-700 dark:text-latte-300">
           Correo
         </label>
         <input
@@ -28,7 +28,7 @@ export function LoginForm() {
           autoComplete="username"
           list="demo-users"
           defaultValue={state?.email ?? ""}
-          className="rounded-md border border-zinc-300 px-3 py-2 text-sm outline-none focus:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-900"
+          className="rounded-md border border-latte-300 px-3 py-2 text-sm outline-none focus:border-latte-500 dark:border-latte-700 dark:bg-latte-900"
           placeholder="operador1@cosecha.local"
         />
         <datalist id="demo-users">
@@ -41,7 +41,7 @@ export function LoginForm() {
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="password" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+        <label htmlFor="password" className="text-sm font-medium text-latte-700 dark:text-latte-300">
           Contraseña
         </label>
         <input
@@ -50,7 +50,7 @@ export function LoginForm() {
           type="password"
           required
           autoComplete="current-password"
-          className="rounded-md border border-zinc-300 px-3 py-2 text-sm outline-none focus:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-900"
+          className="rounded-md border border-latte-300 px-3 py-2 text-sm outline-none focus:border-latte-500 dark:border-latte-700 dark:bg-latte-900"
           placeholder="cosecha2026"
         />
       </div>
@@ -69,7 +69,7 @@ export function LoginForm() {
         {pending ? "Ingresando..." : "Ingresar"}
       </button>
 
-      <p className="text-xs text-zinc-500 dark:text-zinc-400">
+      <p className="text-xs text-latte-500 dark:text-latte-400">
         Demo: cualquier usuario de la lista, contraseña <code>cosecha2026</code>.
       </p>
     </form>

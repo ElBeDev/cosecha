@@ -43,12 +43,12 @@ export default async function MovimientosPage({
     <div className="flex flex-col gap-4">
       <div>
         <h1 className="text-xl font-semibold">Movimientos</h1>
-        <p className="mt-1 text-sm text-zinc-500">Bitácora de entradas y salidas. No se pueden borrar, solo cancelar o revertir.</p>
+        <p className="mt-1 text-sm text-latte-500">Bitácora de entradas y salidas. No se pueden borrar, solo cancelar o revertir.</p>
       </div>
 
       <form method="get" className="flex items-end gap-3">
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-medium text-zinc-600 dark:text-zinc-400">Módulo</label>
+          <label className="text-xs font-medium text-latte-600 dark:text-latte-400">Módulo</label>
           <select name="modulo" defaultValue={modulo ?? ""} className={selectClass}>
             <option value="">Todos</option>
             <option value="ENTRADAS">Entradas</option>
@@ -57,21 +57,21 @@ export default async function MovimientosPage({
         </div>
         <button
           type="submit"
-          className="rounded-md border border-zinc-300 px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-900"
+          className="rounded-md border border-latte-300 px-3 py-2 text-sm font-medium text-latte-700 hover:bg-latte-100 dark:border-latte-700 dark:text-latte-200 dark:hover:bg-latte-900"
         >
           Filtrar
         </button>
         {modulo ? (
-          <Link href="/movimientos" className="text-sm text-zinc-500 underline">
+          <Link href="/movimientos" className="text-sm text-latte-500 underline">
             Limpiar
           </Link>
         ) : null}
       </form>
 
-      <div className="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
-        <table className="min-w-full divide-y divide-zinc-200 text-sm dark:divide-zinc-800">
-          <thead className="bg-zinc-50 dark:bg-zinc-900">
-            <tr className="text-left text-xs font-semibold uppercase text-zinc-500">
+      <div className="overflow-x-auto rounded-lg border border-latte-200 dark:border-latte-800">
+        <table className="min-w-full divide-y divide-latte-200 text-sm dark:divide-latte-800">
+          <thead className="bg-latte-50 dark:bg-latte-900">
+            <tr className="text-left text-xs font-semibold uppercase text-latte-500">
               <th className="px-3 py-2">Fecha</th>
               <th className="px-3 py-2">Usuario</th>
               <th className="px-3 py-2">Acción</th>
@@ -80,7 +80,7 @@ export default async function MovimientosPage({
               <th className="px-3 py-2">Detalle</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
+          <tbody className="divide-y divide-latte-100 dark:divide-latte-800">
             {movements.map((m) => {
               const lot = m.lotId ? lotById.get(m.lotId) : undefined;
               return (
@@ -98,13 +98,13 @@ export default async function MovimientosPage({
                     "-"
                   )}
                 </td>
-                <td className="px-3 py-2 text-zinc-500">{formatDetail(m.newData)}</td>
+                <td className="px-3 py-2 text-latte-500">{formatDetail(m.newData)}</td>
               </tr>
               );
             })}
             {movements.length === 0 ? (
               <tr>
-                <td colSpan={6} className="px-3 py-6 text-center text-zinc-500">
+                <td colSpan={6} className="px-3 py-6 text-center text-latte-500">
                   Sin movimientos registrados todavía.
                 </td>
               </tr>
@@ -117,4 +117,4 @@ export default async function MovimientosPage({
 }
 
 const selectClass =
-  "rounded-md border border-zinc-300 px-3 py-2 text-sm outline-none focus:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-900";
+  "rounded-md border border-latte-300 px-3 py-2 text-sm outline-none focus:border-latte-500 dark:border-latte-700 dark:bg-latte-900";

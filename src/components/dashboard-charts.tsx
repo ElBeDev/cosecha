@@ -19,9 +19,9 @@ function ChartTooltip({
 }) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="rounded-md border border-zinc-200 bg-white px-3 py-2 text-xs shadow-sm dark:border-zinc-700 dark:bg-zinc-900">
-      <p className="font-medium text-zinc-700 dark:text-zinc-200">{label}</p>
-      <p className="text-zinc-500 dark:text-zinc-400">
+    <div className="rounded-md border border-latte-200 bg-latte-50 px-3 py-2 text-xs shadow-sm dark:border-latte-700 dark:bg-latte-900">
+      <p className="font-medium text-latte-700 dark:text-latte-200">{label}</p>
+      <p className="text-latte-500 dark:text-latte-400">
         {payload[0].value.toFixed(unit === "kg" ? 2 : 0)} {unit}
       </p>
     </div>
@@ -30,7 +30,7 @@ function ChartTooltip({
 
 export function CategoryBarChart({ data, unit = "kg" }: { data: CategoryDatum[]; unit?: string }) {
   if (data.length === 0) {
-    return <p className="text-sm text-zinc-500">Sin datos todavía.</p>;
+    return <p className="text-sm text-latte-500">Sin datos todavía.</p>;
   }
   return (
     <ResponsiveContainer width="100%" height={220}>
@@ -52,7 +52,7 @@ export function CategoryBarChart({ data, unit = "kg" }: { data: CategoryDatum[];
 
 export function InventarioPorProductoChart({ data }: { data: ProductoInventario[] }) {
   if (data.length === 0) {
-    return <p className="text-sm text-zinc-500">Sin inventario disponible todavía.</p>;
+    return <p className="text-sm text-latte-500">Sin inventario disponible todavía.</p>;
   }
   return (
     <ResponsiveContainer width="100%" height={220}>

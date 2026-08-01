@@ -34,7 +34,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
+      <header className="border-b border-latte-200 bg-latte-50 dark:border-latte-800 dark:bg-latte-950">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-3">
           <div className="flex items-center gap-6">
             <span className="text-lg font-bold text-emerald-800 dark:text-emerald-400">+Cosecha</span>
@@ -43,7 +43,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-zinc-600 hover:text-emerald-800 dark:text-zinc-300 dark:hover:text-emerald-400"
+                  className="text-latte-600 hover:text-emerald-800 dark:text-latte-300 dark:hover:text-emerald-400"
                 >
                   {link.label}
                 </Link>
@@ -52,13 +52,13 @@ export default async function AppLayout({ children }: { children: React.ReactNod
             </nav>
           </div>
           <div className="flex items-center gap-3 text-sm">
-            <Link href="/perfil" className="text-zinc-500 hover:text-emerald-800 dark:text-zinc-400 dark:hover:text-emerald-400">
+            <Link href="/perfil" className="text-latte-500 hover:text-emerald-800 dark:text-latte-400 dark:hover:text-emerald-400">
               {session.name} · {session.role}
             </Link>
             <form action={logoutAction}>
               <button
                 type="submit"
-                className="rounded-md border border-zinc-300 px-3 py-1 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-900"
+                className="rounded-md border border-latte-300 px-3 py-1 text-latte-700 hover:bg-latte-100 dark:border-latte-700 dark:text-latte-200 dark:hover:bg-latte-900"
               >
                 Salir
               </button>
